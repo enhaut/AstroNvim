@@ -20,16 +20,18 @@ local sections = {
 
 -- Normal --
 -- Standard Operations
-maps.n["j"] = { "v:count == 0 ? 'gj' : 'j'", expr = true, desc = "Move cursor down" }
-maps.n["k"] = { "v:count == 0 ? 'gk' : 'k'", expr = true, desc = "Move cursor up" }
+-- maps.n["j"] = { "v:count == 0 ? 'gj' : 'j'", expr = true, desc = "Move cursor down" }
+-- maps.n["k"] = { "v:count == 0 ? 'gk' : 'k'", expr = true, desc = "Move cursor up" }
 maps.n["<leader>w"] = { "<cmd>w<cr>", desc = "Save" }
 maps.n["<leader>q"] = { "<cmd>confirm q<cr>", desc = "Quit" }
 maps.n["<leader>n"] = { "<cmd>enew<cr>", desc = "New File" }
 maps.n["gx"] = { utils.system_open, desc = "Open the file under cursor with system app" }
 maps.n["<C-s>"] = { "<cmd>w!<cr>", desc = "Force write" }
 maps.n["<C-q>"] = { "<cmd>q!<cr>", desc = "Force quit" }
-maps.n["|"] = { "<cmd>vsplit<cr>", desc = "Vertical Split" }
-maps.n["\\"] = { "<cmd>split<cr>", desc = "Horizontal Split" }
+maps.n["\\"] = { "<cmd>vsplit<cr>", desc = "Vertical Split" }
+maps.n["-"] = { "<cmd>split<cr>", desc = "Horizontal Split" }
+vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprev<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', { noremap = true })
 
 -- Plugin Manager
 maps.n["<leader>p"] = sections.p
@@ -40,13 +42,13 @@ maps.n["<leader>pu"] = { function() require("lazy").check() end, desc = "Plugins
 maps.n["<leader>pU"] = { function() require("lazy").update() end, desc = "Plugins Update" }
 
 -- AstroNvim
-maps.n["<leader>pa"] = { "<cmd>AstroUpdatePackages<cr>", desc = "Update Plugins and Mason Packages" }
-maps.n["<leader>pA"] = { "<cmd>AstroUpdate<cr>", desc = "AstroNvim Update" }
-maps.n["<leader>pv"] = { "<cmd>AstroVersion<cr>", desc = "AstroNvim Version" }
-maps.n["<leader>pl"] = { "<cmd>AstroChangelog<cr>", desc = "AstroNvim Changelog" }
+-- maps.n["<leader>pa"] = { "<cmd>AstroUpdatePackages<cr>", desc = "Update Plugins and Mason Packages" }
+-- maps.n["<leader>pA"] = { "<cmd>AstroUpdate<cr>", desc = "AstroNvim Update" }
+-- maps.n["<leader>pv"] = { "<cmd>AstroVersion<cr>", desc = "AstroNvim Version" }
+-- maps.n["<leader>pl"] = { "<cmd>AstroChangelog<cr>", desc = "AstroNvim Changelog" }
 
 -- Manage Buffers
-maps.n["<leader>c"] = { function() require("astronvim.utils.buffer").close() end, desc = "Close buffer" }
+maps.n["<C-w>"] = { function() require("astronvim.utils.buffer").close() end, desc = "Close buffer" }
 maps.n["<leader>C"] = { function() require("astronvim.utils.buffer").close(0, true) end, desc = "Force close buffer" }
 maps.n["]b"] =
   { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" }
@@ -315,12 +317,12 @@ if is_available "toggleterm.nvim" then
   if vim.fn.executable "gdu" == 1 then
     maps.n["<leader>tu"] = { function() utils.toggle_term_cmd "gdu" end, desc = "ToggleTerm gdu" }
   end
-  if vim.fn.executable "btm" == 1 then
-    maps.n["<leader>tt"] = { function() utils.toggle_term_cmd "btm" end, desc = "ToggleTerm btm" }
-  end
+  --if vim.fn.executable "btm" == 1 then
+  --  maps.n["<leader>tt"] = { function() utils.toggle_term_cmd "btm" end, desc = "ToggleTerm btm" }
+  --end
   local python = vim.fn.executable "python" == 1 and "python" or vim.fn.executable "python3" == 1 and "python3"
   if python then maps.n["<leader>tp"] = { function() utils.toggle_term_cmd(python) end, desc = "ToggleTerm python" } end
-  maps.n["<leader>tf"] = { "<cmd>ToggleTerm direction=float<cr>", desc = "ToggleTerm float" }
+  maps.n["<leader>tt"] = { "<cmd>ToggleTerm direction=float<cr>", desc = "ToggleTerm float" }
   maps.n["<leader>th"] = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", desc = "ToggleTerm horizontal split" }
   maps.n["<leader>tv"] = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", desc = "ToggleTerm vertical split" }
   maps.n["<F7>"] = { "<cmd>ToggleTerm<cr>", desc = "Toggle terminal" }
