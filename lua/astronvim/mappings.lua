@@ -18,6 +18,8 @@ local sections = {
   t = { desc = get_icon("Terminal", 1, true) .. "Terminal" },
 }
 
+local gitignore = require("gitignore")
+
 -- Normal --
 -- Standard Operations
 -- maps.n["j"] = { "v:count == 0 ? 'gj' : 'j'", expr = true, desc = "Move cursor down" }
@@ -156,6 +158,7 @@ if is_available "gitsigns.nvim" then
   maps.n["<leader>gu"] = { function() require("gitsigns").undo_stage_hunk() end, desc = "Unstage Git hunk" }
   maps.n["<leader>gd"] = { function() require("gitsigns").diffthis() end, desc = "View Git diff" }
 end
+vim.keymap.set("n", "<leader>gi", gitignore.generate, {desc = ".gitignore generator" })
 
 -- NeoTree
 if is_available "neo-tree.nvim" then
