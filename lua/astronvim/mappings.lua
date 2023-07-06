@@ -30,8 +30,6 @@ maps.n["<C-s>"] = { "<cmd>w!<cr>", desc = "Force write" }
 maps.n["<C-q>"] = { "<cmd>q!<cr>", desc = "Force quit" }
 maps.n["\\"] = { "<cmd>vsplit<cr>", desc = "Vertical Split" }
 maps.n["-"] = { "<cmd>split<cr>", desc = "Horizontal Split" }
-vim.api.nvim_set_keymap('n', '<S-Tab>', ':bprev<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Tab>', ':bnext<CR>', { noremap = true })
 
 -- Plugin Manager
 maps.n["<leader>p"] = sections.p
@@ -50,9 +48,9 @@ maps.n["<leader>pU"] = { function() require("lazy").update() end, desc = "Plugin
 -- Manage Buffers
 maps.n["<C-w>"] = { function() require("astronvim.utils.buffer").close() end, desc = "Close buffer" }
 maps.n["<leader>C"] = { function() require("astronvim.utils.buffer").close(0, true) end, desc = "Force close buffer" }
-maps.n["]b"] =
+maps.n["<Tab>"] =
   { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" }
-maps.n["[b"] = {
+maps.n["<S-Tab>"] = {
   function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
   desc = "Previous buffer",
 }
