@@ -431,7 +431,8 @@ maps.n["<leader>uu"] = { ui.toggle_url_match, desc = "Toggle URL highlight" }
 maps.n["<leader>uw"] = { ui.toggle_wrap, desc = "Toggle wrap" }
 maps.n["<leader>uy"] = { ui.toggle_syntax, desc = "Toggle syntax highlight" }
 maps.n["<leader>uh"] = { ui.toggle_foldcolumn, desc = "Toggle foldcolumn" }
-
+maps.n["<leader>-"] = { ":foldclose<cr>", desc = "Fold block" }
+maps.n["<leader>+"] = { ":foldopen<cr>", desc = "Expand block" }
 maps.n["<leader>ft"] = {":TodoTelescope<cr>", desc = "Find TODOs" }
 
 utils.set_mappings(astronvim.user_opts("mappings", maps))
