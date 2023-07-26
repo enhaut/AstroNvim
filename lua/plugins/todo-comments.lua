@@ -1,6 +1,6 @@
 return {
   "folke/todo-comments.nvim",
-  lazy = false,
+  event = "User AstroFile",
   dependencies = { "nvim-lua/plenary.nvim" },
   opts = {
   signs = true, -- show icons in the signs column
